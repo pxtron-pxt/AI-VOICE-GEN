@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Voice Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      height: 100px;
+      margin: 10px auto;
+      display: block;
+      font-size: 16px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Voice Generator</h1>
+  <textarea id="textInput" placeholder="Type something to hear it..."></textarea>
+  <button onclick="generateVoice()">Generate Voice</button>
+
+  <script>
+    function generateVoice() {
+      const text = document.getElementById('textInput').value;
+      if (!text) {
+        alert('Please enter some text to generate voice.');
+        return;
+      }
+
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = 'en-US'; // You can set the language (e.g., 'en-US', 'en-GB', etc.)
+      speech.rate = 1; // Adjust the speaking rate (0.1 to 2)
+      speech.pitch = 1; // Adjust the pitch (0 to 2)
+
+      // Speak the text
+      window.speechSynthesis.speak(speech);
+    }
+  </script>
+</body>
+</html>
